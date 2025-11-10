@@ -1,0 +1,11 @@
+FROM eclipse-temurin:21-jre-alpine
+
+WORKDIR /work
+
+# Kopier quarkus app
+COPY --chown=1001:root target/quarkus-app /work
+
+EXPOSE 8080
+USER 1001
+
+ENTRYPOINT ["java", "-Dquarkus.http.host=0.0.0.0", "-jar", "/work/quarkus-run.jar"]
