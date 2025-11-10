@@ -1,4 +1,4 @@
-package no.bouvet.agentic.ai.examples.simple;
+package no.bouvet.agentic.ai.aperitif._A1_simple;
 
 import dev.langchain4j.agentic.Agent;
 import dev.langchain4j.service.UserMessage;

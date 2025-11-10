@@ -1,4 +1,4 @@
-package no.bouvet.agentic.ai.examples.mcp;
+package no.bouvet.agentic.ai.aperitif._A3_tools;
 
 import dev.langchain4j.mcp.McpToolProvider;
 import dev.langchain4j.mcp.client.DefaultMcpClient;

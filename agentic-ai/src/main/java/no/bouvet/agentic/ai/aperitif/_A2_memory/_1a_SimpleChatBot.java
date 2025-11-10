@@ -1,4 +1,4 @@
-package no.bouvet.agentic.ai.examples.memory;
+package no.bouvet.agentic.ai.aperitif._A2_memory;
 
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;

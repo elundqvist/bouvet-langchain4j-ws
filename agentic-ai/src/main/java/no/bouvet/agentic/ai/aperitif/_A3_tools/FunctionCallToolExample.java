@@ -1,30 +1,27 @@
-package no.bouvet.agentic.ai.examples.simple;
+package no.bouvet.agentic.ai.aperitif._A3_tools;
 
-import dev.langchain4j.agentic.AgenticServices;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.service.AiServices;
 
 import static no.bouvet.agentic.ai.common.AiUtils.GPT_4_O_MINI;
 import static no.bouvet.agentic.ai.common.AiUtils.OPENAI_API_KEY;
 
-/**
- * Lag en enkel AI agent.
- * Dok: https://docs.langchain4j.dev/tutorials/agents#agents-in-langchain4j
- */
-public class SimpleAiAgent {
-    public static void main(String[] args) {
+public class FunctionCallToolExample {
+    public static void main(String[] args) throws Exception {
         ChatModel model = OpenAiChatModel.builder()
                 .apiKey(System.getenv(OPENAI_API_KEY))
                 .modelName(GPT_4_O_MINI)
+                .logRequests(true)
+                .logResponses(true)
                 .build();
 
-        PoetAgent poetAgent = AgenticServices.agentBuilder(PoetAgent.class)
+        ChatBot bot = AiServices.builder(ChatBot.class)
                 .chatModel(model)
-                .outputKey("poetAgent")
+                .tools(new Tools())
                 .build();
 
-        String response = poetAgent.writePoem("Birds");
-        System.out.println("---- Poem ----");
+        String response = bot.chat("What is the current datetime. Use provided tool. Format as norwegian date and time.");
         System.out.println(response);
     }
 }
