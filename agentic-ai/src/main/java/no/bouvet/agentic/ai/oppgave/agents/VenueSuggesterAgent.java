@@ -1,6 +1,7 @@
 package no.bouvet.agentic.ai.oppgave.agents;
 
 import dev.langchain4j.agentic.Agent;
+import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 import no.bouvet.agentic.ai.oppgave.domain.Venue;
@@ -10,6 +11,12 @@ import no.bouvet.agentic.ai.oppgave.domain.Venue;
  */
 public interface VenueSuggesterAgent {
 
+    @SystemMessage("""
+            You are a venue recommendation expert with deep knowledge of event spaces, conference halls, hotels, and cultural venues worldwide.
+            Your task is to suggest a realistic and suitable venue based on the event type, city, and expected group size.
+            Focus on providing accurate, context-aware suggestions that match the capacity and nature of the event.
+            Always respond in clear, structured JSON as instructed.
+            """)
     @UserMessage("""
             The user is organizing a {{eventType}} in {{city}} for about {{amountOfPersons}} people.
             Suggest one suitable venue for this type of event.

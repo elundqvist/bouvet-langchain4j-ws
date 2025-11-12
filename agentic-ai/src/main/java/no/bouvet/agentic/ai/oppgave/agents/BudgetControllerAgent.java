@@ -1,6 +1,7 @@
 package no.bouvet.agentic.ai.oppgave.agents;
 
 import dev.langchain4j.agentic.Agent;
+import dev.langchain4j.agentic.declarative.ChatMemoryProviderSupplier;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
@@ -40,4 +41,5 @@ public interface BudgetControllerAgent {
                        @V("amountOfPersons") int amountOfPersons,
                        @V("pricePerPerson") int pricePerPerson,
                        @V("budget") int budget);
+
 }

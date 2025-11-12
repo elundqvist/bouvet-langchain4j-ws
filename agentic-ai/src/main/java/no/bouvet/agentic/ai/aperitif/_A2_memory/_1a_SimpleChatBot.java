@@ -7,10 +7,6 @@ import dev.langchain4j.service.AiServices;
 import static no.bouvet.agentic.ai.common.AiUtils.GPT_4_O_MINI;
 import static no.bouvet.agentic.ai.common.AiUtils.OPENAI_API_KEY;
 
-/**
- * Lag en enkel chat bot som en AI service. Prompt eks.: Hi, tell me an Java joke.
- * Dok: https://docs.langchain4j.dev/tutorials/ai-services#ai-services-1
- */
 public class _1a_SimpleChatBot {
     public static void main(String[] args) {
         ChatModel model = OpenAiChatModel.builder()
