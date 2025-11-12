@@ -58,18 +58,38 @@ docker-compose up -d
 
 MCP-serveren vil være tilgjengelig på `http://localhost:8080`
 
+## 🎓 Hvordan jobbe med workshopen
+
+Dette er en **hands-on workshop** hvor du lærer ved å kode!
+
+### Struktur
+
+1. **Start med Aperitif-eksemplene** (`agentic-ai/src/main/java/no/bouvet/agentic/ai/aperitif/`)
+   - Hvert eksempel (A1-A4) introduserer grunnleggende konsepter
+   - Filene inneholder kommentarer som veileder deg
+   - Fullfør implementasjonene og test at de fungerer
+
+2. **Gå videre til Oppgavene** (`agentic-ai/src/main/java/no/bouvet/agentic/ai/oppgave/`)
+   - 7 praktiske oppgaver (O1-O7) som bygger videre på aperitif-kunnskapen
+   - Hver oppgave fokuserer på ulike workflow-mønstre
+   - Les kommentarene i koden for å forstå hva som skal implementeres
+
+3. **Test underveis**
+   - Kjør main-metodene etter hvert som du løser oppgavene
+   - Se hvordan AI-agentene fungerer i praksis
+
 ## 📁 Prosjektstruktur
 
 ```
 bouvet-langchain4j-ws/
 ├── agentic-ai/                    # Hovedmodul med eksempler og oppgaver
 │   └── src/main/java/no/bouvet/agentic/ai/
-│       ├── aperitif/              # Introduksjonseksempler
-│       │   ├── _A1_simple/        # Enkle AI-agenter
+│       ├── aperitif/              # Introduksjonseksempler (A1-A4)
+│       │   ├── _A1_simple_agent/  # Enkle AI-agenter
 │       │   ├── _A2_memory/        # Chat-minne og kontekst
 │       │   ├── _A3_tools/         # Verktøyintegrasjon
 │       │   └── _A4_guardrail/     # Sikkerhet og guardrails
-│       ├── oppgave/               # Workshop-oppgaver
+│       ├── oppgave/               # Workshop-oppgaver (O1-O7)
 │       └── common/                # Felles hjelpeklasser
 ├── quarkus-mcp-server/            # MCP-server for verktøy
 └── docker-compose.yml             # Docker-konfigurasjon
@@ -79,45 +99,49 @@ bouvet-langchain4j-ws/
 
 ### Aperitif (Introduksjonseksempler)
 
-#### A1: Simple AI Agents
+Disse eksemplene ligger i `agentic-ai/src/main/java/no/bouvet/agentic/ai/aperitif/` og introduserer grunnleggende konsepter. Hver fil inneholder kommentarer som veileder deg gjennom implementasjonen.
+
+#### A1: Simple AI Agents (`_A1_simple_agent/`)
 - **SimpleAiAgent**: Grunnleggende AI-agent implementasjon
 - **PoetAgent**: Spesialisert agent for å skrive dikt
 
-Lær hvordan du:
+**Lær hvordan du:**
 - Oppretter en enkel AI-agent
 - Konfigurerer ChatModel med OpenAI
 - Bruker AgenticServices for å bygge agenter
 
-#### A2: Memory (Minne)
+#### A2: Memory (`_A2_memory/`)
 - **SimpleChatBot**: Enkel chatbot uten minne
 - **ChatMemory**: Demonstrasjon av chat-minne
 - **ChatBot**: Chatbot med persistent kontekst
 
-Lær hvordan du:
+**Lær hvordan du:**
 - Implementerer chat-minne for kontekstuell forståelse
 - Håndterer samtalehistorikk
 - Bygger chatboter som husker tidligere interaksjoner
 
-#### A3: Tools (Verktøy)
+#### A3: Tools (`_A3_tools/`)
 - **FunctionCallToolExample**: Bruk av funksjonsverktøy
 - **McpToolExample**: Integrasjon med MCP-serveren
 - **Tools**: Verktøydefinisjoner
 
-Lær hvordan du:
+**Lær hvordan du:**
 - Integrerer eksterne verktøy med AI-agenter
 - Bruker funksjonsanrop for å utvide agent-kapasiteter
 - Kobler til MCP-serveren for avanserte verktøy
 
-#### A4: Guardrails (Sikkerhet)
+#### A4: Guardrails (`_A4_guardrail/`)
 - **AiAgentWithGuardrail**: Agent med sikkerhetsbegrensninger
 - **PasswordKeeperAgent**: Sikker håndtering av sensitive data
 
-Lær hvordan du:
+**Lær hvordan du:**
 - Implementerer guardrails for å beskytte sensitive data
 - Kontrollerer agent-atferd
 - Sikrer trygg AI-bruk
 
 ## 🎯 Oppgaver
+
+Oppgavene ligger i `agentic-ai/src/main/java/no/bouvet/agentic/ai/oppgave/` og bygger videre på kunnskapen fra aperitif-eksemplene.
 
 Workshopen inneholder 7 praktiske oppgaver for å mestre ulike workflow-mønstre:
 
