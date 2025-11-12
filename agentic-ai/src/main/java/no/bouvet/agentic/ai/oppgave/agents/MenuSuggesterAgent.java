@@ -14,22 +14,6 @@ import org.jspecify.annotations.Nullable;
 public interface MenuSuggesterAgent {
 
     @UserMessage("""
-        Based on the venue {{venue}} in {{city}} and the event type {{eventType}},
-        suggest a suitable menu or catering option for {{amountOfPersons}} guests.
-
-        Respond strictly in JSON matching this structure:
-        {
-          "type": "string",
-          "description": "string",
-          "pricePerPerson": number
-        }
-        
-        Budget status: {{context}}.
-        
-        Keep the suggestion realistic and aligned with the venue type and event context.
-        Price per person is in currency NOK.
-        Do not include any text outside the JSON.
-        If budgetOk equals "false", choose a cheaper or smaller option.
         """)
     @Agent("Suggests suitable menus or catering options based on venue, event type, and group size.")
     Menu suggest(@V("venue") Venue venue,

@@ -3,6 +3,9 @@ package no.bouvet.agentic.ai.oppgave;
 import dev.langchain4j.agentic.AgenticServices;
 import dev.langchain4j.agentic.UntypedAgent;
 import no.bouvet.agentic.ai.oppgave.agents.AgentsProvider;
+import no.bouvet.agentic.ai.oppgave.agents.EntertainmentSuggesterAgent;
+import no.bouvet.agentic.ai.oppgave.agents.MenuSuggesterAgent;
+import no.bouvet.agentic.ai.oppgave.agents.VenueSuggesterAgent;
 import no.bouvet.agentic.ai.oppgave.domain.Entertainment;
 import no.bouvet.agentic.ai.oppgave.domain.EventPlannerResult;
 import no.bouvet.agentic.ai.oppgave.domain.Menu;
@@ -10,7 +13,11 @@ import no.bouvet.agentic.ai.oppgave.domain.Venue;
 
 import java.util.Map;
 
-
+/**
+ * Opprett et EventPlannerResult ved hjelp av venueAgent, menuAgent, entertainmentAgent.
+ *
+ * Oppgave: Fullfør prompt'en til {@link VenueSuggesterAgent}, {@link  MenuSuggesterAgent} og {@link EntertainmentSuggesterAgent}.
+ */
 public class _O1_SequenceWorkflow {
     public static void main(String[] args) {
         AgentsProvider provider = new AgentsProvider();

@@ -16,7 +16,9 @@ import no.bouvet.agentic.ai.oppgave.mcp.McpProvider;
 import java.util.Map;
 import java.util.Scanner;
 
-
+/**
+ * Et eksempel med Human-in-the-loop. Test det gjerne ut..
+ */
 public class _O7_HumanInTheLoop {
     public static void main(String[] args) {
         AgentsProvider provider = new AgentsProvider();

@@ -1,13 +1,12 @@
 package no.bouvet.agentic.ai.oppgave;
 
-import dev.langchain4j.agentic.AgenticServices;
-import dev.langchain4j.agentic.UntypedAgent;
 import no.bouvet.agentic.ai.oppgave.agents.AgentsProvider;
-import no.bouvet.agentic.ai.oppgave.domain.*;
 
 import java.util.Map;
 
-
+/**
+ * Kjør menuAgent og entertainmentAgent parallelt i en egen workflow.
+ */
 public class _O2_ParallelWorkflow {
     public static void main(String[] args) {
         AgentsProvider provider = new AgentsProvider();
@@ -15,33 +14,21 @@ public class _O2_ParallelWorkflow {
         var menuAgent = provider.provideMenuAgent();
         var entertainmentAgent = provider.provideEntertainmentAgent();
 
-        UntypedAgent agentParallel = AgenticServices.parallelBuilder()
-                .subAgents(menuAgent, entertainmentAgent)
-                .outputKey("event")
-                .build();
-
-        UntypedAgent agentSeq = AgenticServices.sequenceBuilder()
-                .subAgents(venueAgent, agentParallel)
-                .outputKey("event")
-                .output(agenticScope -> {
-                    Venue venue = (Venue) agenticScope.readState("venue");
-                    Menu menu = (Menu) agenticScope.readState("menu");
-                    Entertainment entertainment = (Entertainment) agenticScope.readState("entertainment");
-                    return new EventPlannerResult(venue, menu, entertainment, null);
-                })
-                .build();
+        // 1. Opprett en parallel workflow med AgenticServices.parallelBuilder()
+        // 2. Opprett en sequential workflow med AgenticServices.sequenceBuilder()
+        // 3. Resultatet skal bli en EventPlannerResult.
 
         Map<String, Object> eventType = Map.of(
                 "eventType", "Company event",
                 "amountOfPersons", "48",
                 "city", "Oslo",
                 "budget", "20000",
-                "budgetAdjustment", "UNKNOWN",
-                "previousTotalPrice", "UNKNOWN"
+                "budgetAdjustment", "UNKNOWN", // må være med initielt
+                "previousTotalPrice", "UNKNOWN" // må være med initielt
         );
 
-        EventPlannerResult invoke = (EventPlannerResult) agentSeq.invoke(eventType);
+        // EventPlannerResult invoke = (EventPlannerResult) agentSeq.invoke(eventType);
 
-        System.out.println(invoke);
+        // System.out.println(invoke);
     }
 }

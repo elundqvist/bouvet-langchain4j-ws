@@ -8,7 +8,10 @@ import no.bouvet.agentic.ai.oppgave.mcp.McpProvider;
 
 import java.util.Map;
 
-
+/**
+ * Hvis bruker skal planlegge et event under 20 personer, så er det ikke behov for underholdning.
+ * Sørg for at conditional workflow'en under dropper entertainmentAgent i dette tilfellet.
+ */
 public class _O4_ConditionalWorkflow {
     public static void main(String[] args) {
         AgentsProvider provider = new AgentsProvider();
@@ -17,8 +20,7 @@ public class _O4_ConditionalWorkflow {
         var entertainmentAgent = provider.provideEntertainmentAgent();
 
         UntypedAgent agentSeq = AgenticServices.conditionalBuilder()
-                .subAgents(venueAgent, menuAgent)
-                .subAgents((a) -> (int) a.readState("amountOfPersons") >= 25, entertainmentAgent)
+                .subAgents(venueAgent, menuAgent, entertainmentAgent)
                 .outputKey("event")
                 .output(agenticScope -> {
                     Venue venue = (Venue) agenticScope.readState("venue");
@@ -30,9 +32,9 @@ public class _O4_ConditionalWorkflow {
 
         Map<String, Object> eventType = Map.of(
                 "eventType", "Company event",
-                "amountOfPersons", "20",
+                "amountOfPersons", "15",
                 "city", "Oslo",
-                "budget", "20000",
+                "budget", "8000",
                 "context", "none"
         );
 

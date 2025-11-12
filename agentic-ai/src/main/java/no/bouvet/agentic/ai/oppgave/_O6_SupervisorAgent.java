@@ -15,7 +15,13 @@ import no.bouvet.agentic.ai.oppgave.mcp.McpProvider;
 
 import java.util.Map;
 
-
+/**
+ * Benytt EventPlanningSupervisor til orkestrere alle agentene.
+ * PS! det er også mulig å kombinere supervisor agents med andre workflows.
+ *
+ * Eksempler: https://github.com/langchain4j/langchain4j-examples/tree/main/agentic-tutorial/src/main/java/_7_supervisor_orchestration
+ * Dokumentasjon: https://docs.langchain4j.dev/tutorials/agents#pure-agentic-ai
+ */
 public class _O6_SupervisorAgent {
     public static void main(String[] args) {
         AgentsProvider provider = new AgentsProvider();
@@ -47,20 +53,14 @@ public class _O6_SupervisorAgent {
                 .maxIterations(5)
                 .build();
 
-        EventPlanningSupervisor theEventPlanningSupervisor = AgenticServices.supervisorBuilder(EventPlanningSupervisor.class)
-                .chatModel(provider.getModel())
-                .subAgents(venueAgent, entertainmentAgent, budgetAgent)
-                .contextGenerationStrategy(SupervisorContextStrategy.CHAT_MEMORY_AND_SUMMARIZATION)
-                .responseStrategy(SupervisorResponseStrategy.SUMMARY) // we want a summary of what happened, rather than retrieving a response
-                .supervisorContext("Always use the full panel of available agents. Always answer in English. The variable 'context' is none first run of budgetAgent.") // optional context for the supervisor on how to behave
-                .description("The event planning supervisor")
-                .build();
+        // Lag en EventPlanningSupervisor med AgenticServices.supervisorBuilder(EventPlanningSupervisor.class)...
+        //..
 
-        String invoke1 = theEventPlanningSupervisor.invoke("hi, can you plan an company event for about 50 persons in Oslo area. The budget is 20000 NOK.");
+        //String invoke1 = theEventPlanningSupervisor.invoke("hi, can you plan an company event for about 50 persons in Oslo area. The budget is 20000 NOK.");
         //String invoke2 = theEventPlanningSupervisor.invoke("Oops, i changed my mind, we want the event in Drammen, same budget!");
 
         System.out.println("***** Invoke 1");
-        System.out.println(invoke1);
+        //System.out.println(invoke1);
         //System.out.println("***** Invoke 2");
         //System.out.println(invoke2);
     }
