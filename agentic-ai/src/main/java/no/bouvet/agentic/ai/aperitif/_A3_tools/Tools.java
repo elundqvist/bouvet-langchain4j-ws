@@ -1,14 +1,10 @@
 package no.bouvet.agentic.ai.aperitif._A3_tools;
 
-import dev.langchain4j.agent.tool.Tool;
-
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class Tools {
 
-    @Tool("Fetch current date and time")
+    // 1. Anngi Tools annotasjon for å markere metoden som en tool.
     public String getCurrentDateTime(){
-        return OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        // 2. returner dagens tid og dato i ISO_DATE_TIME.
+        return null;
     }
 }

@@ -135,7 +135,7 @@ Workshopen inneholder 7 praktiske oppgaver for å mestre ulike workflow-mønstre
 
 ```bash
 cd agentic-ai
-mvn exec:java -Dexec.mainClass="no.bouvet.agentic.ai.aperitif._A1_simple.SimpleAiAgent"
+mvn exec:java -Dexec.mainClass="no.bouvet.agentic.ai.aperitif._A1_simple_agent.SimpleAiAgent"
 ```
 
 ### Kjør en oppgave
