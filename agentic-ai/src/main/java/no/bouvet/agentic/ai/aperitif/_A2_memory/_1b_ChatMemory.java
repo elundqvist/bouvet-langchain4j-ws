@@ -21,6 +21,7 @@ public class _1b_ChatMemory {
 
         ChatBot assistant = AiServices.builder(ChatBot.class)
                 .chatModel(model)
+                .chatMemory(dev.langchain4j.memory.chat.MessageWindowChatMemory.withMaxMessages(10))
                 .build();
 
         String answer = assistant.chat("Hei, jeg heter ...!");

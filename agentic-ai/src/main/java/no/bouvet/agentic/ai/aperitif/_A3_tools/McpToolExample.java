@@ -27,14 +27,27 @@ public class McpToolExample {
         ChatModel model = AiUtils.model();
 
         //1. Opprett en McpTransport med: new StreamableHttpMcpTransport.Builder().
+        McpTransport transport = new StreamableHttpMcpTransport.Builder()
+                .url("http://localhost:8080/mcp")
+                .timeout(Duration.ofSeconds(60))
+                .logRequests(true)
+                .logResponses(true)
+                .build();
 
         //2. Opprett en McpClient med: new DefaultMcpClient.Builder()
+        McpClient mcpClient = new DefaultMcpClient.Builder()
+                .transport(transport)
+                .build();
 
         //3. Opprett en ToolProvider med McpToolProvider.builder().
+        ToolProvider toolProvider = McpToolProvider.builder()
+                .mcpClients(java.util.List.of(mcpClient))
+                .build();
 
         //4. Legg til toolProvider
         ChatBot bot = AiServices.builder(ChatBot.class)
                 .chatModel(model)
+                .toolProvider(toolProvider)
                 .build();
         try {
             String response = bot.chat("What is 5+12? Use the provided tool to answer " +
@@ -42,6 +55,7 @@ public class McpToolExample {
             System.out.println(response);
         } finally {
             //5. lukk mcpClient...
+            mcpClient.close();
         }
     }
 }

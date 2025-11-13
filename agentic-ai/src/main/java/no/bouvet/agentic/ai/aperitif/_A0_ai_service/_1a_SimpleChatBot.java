@@ -18,7 +18,12 @@ public class _1a_SimpleChatBot {
                 .build();
 
         //1. AiServices.create(ChatBot.class, model)
+        ChatBot chatBot = AiServices.create(ChatBot.class, model);
+        
         //2. Kall metoden chat på ChatBot interfacet med en valgfri prompt.
+        String response = chatBot.chat("Hei! Kan du fortelle meg om LangChain4J?");
+        
         //3. Skriv ut resultatet.
+        System.out.println(response);
     }
 }
