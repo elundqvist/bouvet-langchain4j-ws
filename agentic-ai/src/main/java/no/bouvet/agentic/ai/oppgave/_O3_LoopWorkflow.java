@@ -27,7 +27,15 @@ public class _O3_LoopWorkflow {
                 .outputKey("budgetStatus")
                 .exitCondition(agenticScope -> {
                     // Kode her ...
-                    return true;
+                    BudgetStatus budgetStatus = (BudgetStatus) agenticScope.readState("budgetStatus");
+                    
+                    if (budgetStatus != null && !budgetStatus.budgetOk()) {
+                        Menu menu = (Menu) agenticScope.readState("menu");
+                        agenticScope.writeState("context", "Previous price per person was %s, reduce the price!"
+                                .formatted(menu.pricePerPerson()));
+                    }
+                    
+                    return budgetStatus != null && budgetStatus.budgetOk();
                 })
                 .description("Fetch menu and control budget agents")
                 .maxIterations(5)

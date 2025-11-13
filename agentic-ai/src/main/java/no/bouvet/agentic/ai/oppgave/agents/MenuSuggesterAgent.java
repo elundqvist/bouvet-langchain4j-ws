@@ -14,6 +14,12 @@ import org.jspecify.annotations.Nullable;
 public interface MenuSuggesterAgent {
 
     @UserMessage("""
+        Suggest a suitable menu or catering option for a {{eventType}} at {{venue}} in {{city}} for {{amountOfPersons}} persons.
+        Consider the venue type and location when making your suggestion.
+        {{#if context}}
+        Additional context: {{context}}
+        {{/if}}
+        Provide a menu name, description, and price per person in NOK.
         """)
     @Agent("Suggests suitable menus or catering options based on venue, event type, and group size.")
     Menu suggest(@V("venue") Venue venue,

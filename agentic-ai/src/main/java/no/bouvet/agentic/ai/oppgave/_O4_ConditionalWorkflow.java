@@ -20,7 +20,17 @@ public class _O4_ConditionalWorkflow {
         var entertainmentAgent = provider.provideEntertainmentAgent();
 
         UntypedAgent agentSeq = AgenticServices.conditionalBuilder()
-                .subAgents(venueAgent, menuAgent, entertainmentAgent)
+                .subAgents(agenticScope -> true, venueAgent, menuAgent)
+                .subAgents(agenticScope -> {
+                    // Skip entertainment for events under 20 persons
+                    Object amountOfPersons = agenticScope.readState("amountOfPersons");
+                    if (amountOfPersons instanceof String) {
+                        return Integer.parseInt((String) amountOfPersons) >= 20;
+                    } else if (amountOfPersons instanceof Integer) {
+                        return (Integer) amountOfPersons >= 20;
+                    }
+                    return true;
+                }, entertainmentAgent)
                 .outputKey("event")
                 .output(agenticScope -> {
                     Venue venue = (Venue) agenticScope.readState("venue");

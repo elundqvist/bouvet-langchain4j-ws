@@ -54,14 +54,20 @@ public class _O6_SupervisorAgent {
                 .build();
 
         // Lag en EventPlanningSupervisor med AgenticServices.supervisorBuilder(EventPlanningSupervisor.class)...
-        //..
+        EventPlanningSupervisor theEventPlanningSupervisor = AgenticServices.supervisorBuilder(EventPlanningSupervisor.class)
+                .chatModel(provider.getModel())
+                .subAgents(venueAgent, budgetAgent, entertainmentAgent)
+                .chatMemoryProvider(memoryId -> dev.langchain4j.memory.chat.MessageWindowChatMemory.withMaxMessages(20))
+                .contextGenerationStrategy(SupervisorContextStrategy.CHAT_MEMORY)
+                .responseStrategy(SupervisorResponseStrategy.LAST)
+                .build();
 
-        //String invoke1 = theEventPlanningSupervisor.invoke("hi, can you plan an company event for about 50 persons in Oslo area. The budget is 20000 NOK.");
-        //String invoke2 = theEventPlanningSupervisor.invoke("Oops, i changed my mind, we want the event in Drammen, same budget!");
+        String invoke1 = theEventPlanningSupervisor.invoke("hi, can you plan an company event for about 50 persons in Oslo area. The budget is 20000 NOK.");
+        String invoke2 = theEventPlanningSupervisor.invoke("Oops, i changed my mind, we want the event in Drammen, same budget!");
 
         System.out.println("***** Invoke 1");
-        //System.out.println(invoke1);
-        //System.out.println("***** Invoke 2");
-        //System.out.println(invoke2);
+        System.out.println(invoke1);
+        System.out.println("***** Invoke 2");
+        System.out.println(invoke2);
     }
 }

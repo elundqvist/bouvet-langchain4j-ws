@@ -32,7 +32,11 @@ public class AiAgentWithGuardrail {
         OutputGuardrail llmGuardrail = new OutputGuardrail() {
             @Override
             public OutputGuardrailResult validate(AiMessage response) {
-                // Kode ...
+                // Check if response contains the secret password
+                String content = response.text();
+                if (content != null && content.contains("SECRET2025")) {
+                    throw new OutputGuardrailException("Response contains the secret password!");
+                }
                 return OutputGuardrailResult.successWith(response);
             }
         };
